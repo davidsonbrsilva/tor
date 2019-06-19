@@ -1,0 +1,10 @@
+
+
+Tor consiste de um proxy de três camadas, como camadas de uma cebola. O Navegador Tor se conecta aleatoriamente a um dos nós de entrada listados publicamente, envia esse tráfego por meio de uma retransmissão intermediária selecionada aleatoriamente e, finalmente, expele seu tráfego pelo terceiro e último nó de saída.
+
+Se você mora em um regime que bloqueia o Tor ou precisa acessar um serviço da web que bloqueia o Tor, você também pode configurar o Navegador Tor para usar pontes (bridges). Ao contrário dos nós de entrada e saída do Tor, os endereços IP de ponte não são listados publicamente, o que dificulta que os serviços da Web, ou governos, bloqueiem esses endereços IP.
+
+A rede Tor roteia todo tipo de tráfico TCP mas é otimizada para navegação web. Tor não suporta UDP, então tentar compartilhar via torrent ISOs de software não funciona.
+
+É legal?
+Para a maioria das pessoas, Tor é completamente legal para uso. Em alguns países, entretanto, Tor ainda é ilegal ou bloqueado por autoridades nacionais.

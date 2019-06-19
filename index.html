@@ -1,49 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-		<title>reveal.js</title>
-
-		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
-
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section data-background-color="#59316B">
+					<h1><img width="400" style="border:none; box-shadow:none; background-color:transparent" src="img/tor-logo.svg" alt="Tor"></h1>
+					<h2 style="color:white">The Onion Routing</h2>
+				</section>
+				<section data-background-color="#59316B">
+					<img style="border:none; border-radius: 200px" src="img/davidson.jfif" alt="Davidson Bruno da Silva">
+					<p style="color:white">Davidson Bruno da Silva</p>
+					<p style="color: rgba(255,255,255,0.6)"><small>Sistemas de Informação<br>Universidade Federal dos Vales do Jequitinhonha e Mucuri</small></p>
+				</section>
+				<section data-background-color="#59316B">
+					<blockquote style="color:white" cite="https://www.reddit.com/r/IAmA/comments/36ru89/just_days_left_to_kill_mass_surveillance_under/">
+						"Arguing that you don't care about the right to privacy because you have nothing to hide is no different than saying you don't care about free speech because you have nothing to say" - Edward Snowden em <a style="color: white; text-decoration: underline" href="https://www.reddit.com/r/IAmA/comments/36ru89/just_days_left_to_kill_mass_surveillance_under/">Reddit</a> (2015)
+					</blockquote>
+				</section>
+				<section data-background-color="#59316B">
+					<h2 style="color:white">Índice</h2>
+					<ul>
+						<li style="color:white" class="fragment fade-in-then-semi-out">O que é</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Breve histórico</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Como funciona</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Tor vs. VPN</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Tor Atacante</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Legalidade</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Considerações</li>
+						<li style="color:white" class="fragment fade-in-then-semi-out">Referências</li>
+					</l>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">O que é</h2>
+					</section>
+					<section>
+						<p class="fragment fade-down">Organização <span class="fragment highlight-blue">sem fins lucrativos</span></p>
+						<p class="fragment fade-down">Avanço dos <span class="fragment highlight-blue">direitos humanos</span></p>
+						<p class="fragment fade-down"><span class="fragment highlight-blue">Defesa da privacidade online</span> por meio do software livre e redes abertas</p>
+						<aside class="notes">
+							Tornou-se organização sem fins lucrativos do tipo 501(c)3 em 2006. Tipo 501(c)(3) é um item da legislação tributária norte-americana que trata de organizações sem fins lucrativos que têm direitos à isenção de impostos.
+						</aside>
+					</section>
+					<section data-background-color="#222222">
+						<h3 style="color:white">Missão:</h3>
+						<blockquote style="color:white" cite="https://www.torproject.org/pt-BR/about/history/">
+							"Proteger os direitos humanos e liberdades por meio da criação e implementação de tecnologias de anonimato e privacidade livres e de código aberto, provendo apoio a seu uso e disponibilidade irrestritos. Ao mesmo tempo, contribuímos para o avanço de sua compreensão científica e popular"
+						</blockquote>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Breve Histórico</h2>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">1990</h3>
+						<p class="fragment fade-down">Falta de segurança na internet</p>
+						<p class="fragment fade-down">Possibilidade de usá-la para rastreamento e vigilância</p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">1995</h3>
+						<p class="fragment fade-down">David Goldschlag, Mike Reed e Paul Syverson, no Laboratório de Pesquisa Naval, <span class="fragment highlight-blue">iniciam os primeiros projetos de pesquisa e protótipos do roteamento onion</span></p>
+						<p class="fragment fade-down">O objetivo era <span class="fragment highlight-blue">criar conexões com a internet que impedissem o monitoramento da rede</span></p>
+						<p class="fragment fade-down">A estratégia era <span class="fragment highlight-blue">rotear o tráfego por múltiplos servidores</span> e <span class="fragment highlight-blue">criptografá-lo a cada passo</span> do caminho.</p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2000</h3>
+						<p class="fragment fade-down">Roger Dingledine, Paul Syverson e Nick Mathewson trabalham num projeto de roteamento onion o qual chamaram de <span class="fragment highlight-blue">Tor</span></p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2002</h3>
+						<p class="fragment fade-down">A rede Tor foi inicialmente implementada sob <span class="fragment highlight-blue">licença de software livre e aberto</span></p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2004</h3>
+						<p class="fragment fade-down">A <span class="fragment highlight-blue">Eletronic Frontier Foundation (EFF)</span> começou a financiar o projeto Tor</p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2006</h3>
+						<p class="fragment fade-down">A <span class="fragment highlight-blue">Tor Project Inc. foi fundada</span> para atuar como mantenedora do desenvolvimento do Tor</p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2007</h3>
+						<p class="fragment fade-down">Começou o <span class="fragment highlight-blue">desenvolvimento de pontes à rede Tor</span> para enfrentar a censura</p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2008</h3>
+						<p class="fragment fade-down">Iniciou-se o desenvolvimento do <span class="fragment highlight-blue">Navegador Tor</span></p>
+					</section>
+					<section>
+						<h3 class="fragment fade-down">2013</h3>
+						<p class="fragment fade-down">O Tor operacionalizou as atividades de denúncia após as <span class="fragment highlight-blue">revelações de Showden</span></p>
+						<p class="fragment fade-down">O conteúdo dos documentos revelados assegurava que, naquela época, <span class="fragment highlight-blue">o Tor não podia ser quebrado</span></p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Como funciona</h2>
+					</section>
+					<section>
+						<p class="fragment fade-down">Alice quer conversar com Bob.</p>
+						<p class="fragment fade-down">Alice entrega à Peter, o carteiro, um envelope com a mensagem à Bob.</p>
+					</section>
+					<section>
+						<p>Peter, o carteiro, vê o seguinte no envelope:</p>
+						<blockquote>
+							<strong>De:</strong> Alice<br><strong>Para:</strong>Bob
+						</blockquote>
+					</section>
+					<section>
+						<p>Peter entrega o envelope à Bob.</p>
+					</section>
+					<section>
+						<p>Bob abre e vê uma carta com o seguinte conteúdo:</p>
+						<blockquote>
+							Ouvi dizer que tem um novo Café na cidade. Tá a fim de conhecer comigo?
+						</blockquote>
+					</section>
+					<section>
+						<p class="fragment fade-down">O que Peter sabe agora?</p>
+						<span class="fragment fade-down"><p class="fragment grow">Alice está conversando com Bob.</p></span>
+					</section>
+					<section>
+						<!-- Colocar aqui ilustração do exemplo -->
+					</section>
+					<section>
+						<p class="fragment fade-down">E se Alice quisesse conversar com Bob <span class="fragment highlight-blue">anonimamente</span>?</p>
+						<p class="fragment fade-down">Neste caso, Peter não pode saber que Alice conversa com Bob.</p>
+					</section>
+					<section>
+						<p>Vamos mudar um pouco a situação.</p>
+					</section>
+					<section>
+						<p>Suponha que Peter agora recebe um envelope laranja de Alice que contém esta informação:</p>
+						<blockquote>
+							<strong>De:</strong> Alice<br>
+							<strong>Para:</strong> Peter<br>
+							<strong>Mensagem:</strong> Por favor, entregue o envelope azul anexo à Paul e se coloque como o remetente da mensagem.
+						</blockquote>
+					</section>
+					<section>
+						<p class="fragment fade-down">O que Peter sabe agora?</p>
+						<p class="fragment fade-down">Alice está conversando com Paul.</p>
+					</section>
+					<section>
+						<p>Quando Paul recebe seu envelope azul, ele vê o seguinte conteúdo:</p>
+						<blockquote>
+							<strong>De:</strong> Peter<br>
+							<strong>Para:</strong> Bob<br>
+							<strong>Mensagem:</strong> Por favor, entregue o envelope verde à Bob e se coloque como o remetente da mensagem.
+						</blockquote>
+					</section>
+					<section>
+						<p class="fragment fade-down">O que Paul sabe agora?</p>
+						<p class="fragment fade-down">Peter está conversando com Bob.</p>
+					</section>
+					<section>
+						<!-- Colocar aqui ilustração do exemplo -->
+					</section>
+					<section>
+						<p class="fragment fade-down">E se Peter e Paul forem amigos e decidirem conversar sobre suas correspondências?</p>
+						<p class="fragment fade-down">Neste caso, eles podem descobrir quem está falando com quem e isso quebraria totalmente o protocolo.</p>
+					</section>
+					<section>
+						<p>Como resolver isso então?</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Em Tor, os carteiros são chamados de nós Tor</p>
+						<p class="fragment fade-down">Tor verifica a integridade dos nós Tor</p>
+						<p class="fragment fade-down">Ele seleciona os nós aleatoriamente e, por isso, a probabilidade de todos cooperarem entre si é baixa</p>
+						<p class="fragment fade-down">Tor adiciona uma camada extra, um nó intermediário (ou um terceiro carteiro, se preferir) para se comunicar com os outros dois</p>
+					</section>
+					<section>
+						<p>Dois carteiros são suficientes? E se fossem trinta?</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Usar três carteiros é a solução ideal. Mais do que três <span class="fragment highlight-blue">não aumenta a segurança</span></p>
+						<p class="fragment fade-down">A solução de três carteiros também oferece a vantagem de ter um carteiro "exclusivamente meio" que <span class="fragment highlight-blue">só fala com outros carteiros</span></p>
+						<p class="fragment fade-down">Além disso, quanto mais camadas, <span class="fragment highlight-blue">menor o desempenho</span></p>
+					</section>
+					<section>
+						<p>Ao responder, Bob precisa usar a mesma sequência de carteiros na ordem inversa?</p>
+					</section>
+					<section>
+						<p>Sim, Bob envia sua resposta de volta para o carteiro que conhece - Paul - que empacota a resposta de uma maneira cebola e envia de volta para Peter, que desembrulha e encaminha para Alice</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">A rede Tor é uma rede de 6500 ou mais (a partir de fevereiro de 2019) servidores chamados de nós de retransmissão (ou apenas retransmissões), todos executados e mantidos por voluntários</p>
+						<p class="fragment fade-down">Quando você visita um site usando o navegador Tor, seu computador nunca se comunica diretamente com o servidor do site</p>
+						<p class="fragment fade-down">O navegador Tor constrói um caminho sinuoso através de um conjunto aleatório de três nós Tor, e envia seus dados através deste circuito</p>
+					</section>
+					<section>
+						<figure>
+							<img width="600" src="img/tor-network.png" alt="Rede Tor">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<p class="fragment fade-down">Um circuito Tor é composto de um <span class="fragment highlight-blue">nó de guarda</span>, um <span class="fragment highlight-blue">nó intermediário</span> e um <span class="fragment highlight-blue">nó de saída</span></p>
+						<p class="fragment fade-down">O cliente inicia o processo de formação de circuito entrando em contato com o nó escolhido como seu nó de guarda</p>
+						<p class="fragment fade-down">O cliente e o nó de guarda negociam uma sessão TLS e o cliente pede ao nó de guarda para ajudá-lo a inicializar um circuito Tor</p>
+					</section>
+					<section>
+						<figure>
+							<img width="600" src="img/tor-attacker-client.png" alt="Ataque ao Cliente">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Nós de diretório</h3>
+						<p class="fragment fade-down">O estado da rede Tor é rastreado e divulgado por um grupo de 9 servidores confiáveis ​​- conhecidos como nós de diretório - sendo cada um deles controlado por uma pessoa ou organização diferente</p>
+					</section>
+					<section>
+						<figure>
+							<img width="600" src="img/tor-directory-nodes.png" alt="Ataque ao Cliente">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<h3>Nós de ponte (bridge)</h3>
+						<p class="fragment fade-down">O Tor tenta ajudar seus usuários a burlar os censores e ocultar o fato de que eles estão usando o Tor através de um tipo adicional de nó chamado de <strong>nó de ponte</strong></p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Um nó de ponte é essencialmente um proxy na rede Tor</p>
+						<p class="fragment fade-down">Um usuário Tor envia seu tráfego para o nó da ponte, que encaminha seu tráfego para o nó de guarda escolhido pelo usuário</p>
+						<p class="fragment fade-down">A construção de circuitos e a troca de dados com o servidor remoto continuam normais, mas com um salto adicional através de um nó de ponte</p>
+					</section>
+					<section>
+						<figure>
+							<img width="600" src="img/tor-bridge.png" alt="Ataque ao Cliente">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<p>Existe maneira de configurar um nó de retransmissão do Tor por conta própria?</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Quase certamente existem nós de retransmissão Tor executados por organizações que desejam prejudicar a rede</p>
+						<p class="fragment fade-down">Desde que a fração dos nós de retransmissão do Tor controlados pelos adversários permaneça baixa e gerenciável, o Tor permanece estatisticamente seguro</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">A definição de segurança do Tor é que ninguém (além do usuário final do Tor) é capaz de descobrir os endereços IP tanto da origem quanto do destino de um circuito Tor</p>
+						<p class="fragment fade-down">Se o tráfego fluir através de um transmissor controlado por adversário, mas não ajudar esse adversário a aprender os endereços IP da origem e do destino de um circuito Tor, a Tor Foundation simplesmente agradece ao adversário por sua generosa doação de largura de banda de rede</p>
+					</section>
+					<section>
+						<p>Um nó guarda mal-intencionado pode ler as instruções secretas que o cliente está enviando para o nó de saída?</p>
+					</section>
+					<section>
+						<figure>
+							<img width="600" src="img/tor-evil-guard.png" alt="Rede Tor">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<p>O Tor impede que seus nós de retransmissão espiem as instruções uns dos outros, envolvendo suas cargas em várias camadas de criptografia TLS</p>
+						<aside class="notes">
+							Quando um cliente Tor constrói um circuito, ele negocia sessões TLS com cada um dos nós que escolheu para seu circuito usando os certificados TLS e as chaves públicas dos nós (veja abaixo mais detalhes sobre este processo). O resultado de cada negociação de sessão TLS é uma chave de criptografia simétrica, conhecida apenas pelo cliente e pelo nó. Em particular, graças às impressionantes propriedades de segurança do TLS, nenhum nó no circuito conhece as chaves simétricas de qualquer um dos outros.
+						</aside>
+					</section>
+					<section>
+						<p>O cliente constrói sua carga útil usando três camadas de criptografia - uma para cada nó no circuito</p>
+					</section>
+					<section>
+						<p class="fragment fade-in-then-out">O cliente monta os dados que deseja enviar ao servidor remoto e os criptografa usando a chave simétrica que eles concordaram com o nó de saída durante a negociação de TLS.</p>
+						<p class="fragment fade-in-then-out">O cliente pega a saída criptografada e a criptografa novamente usando a chave simétrica que ele concordou com o nó do meio.</p>
+						<p class="fragment fade-in-then-out">O cliente pega a saída duplamente criptografada e a criptografa pela terceira vez usando a chave simétrica que ela concordou com o nó guarda.</p>
+					</section>
+					<section>
+						<figure>
+							<img src="img/tor-triple-encryption.png" alt="Criptografia tripla do Tor">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Tor vs. VPN</h2>
+					</section>
+					<section>
+						<p class="fragment fade-in-then-out">Quando você usa uma VPN, seu computador envia todo o tráfego da Internet para sua VPN, e sua VPN a encaminha para os destinos apropriados</p>
+						<p class="fragment fade-in-then-out">O provedor ou qualquer pessoa que esteja assistindo a sua rede já viu o tráfego indo de você para sua VPN</p>
+						<p class="fragment fade-in-then-out">Eles não podem ver dentro de sua conexão criptografada com sua VPN, o que significa que eles não podem ver com quais servidores remotos você está se comunicando</p>
+					</section>
+					<section>
+						<p>Mas e a sua VPN? Ela conhece todo o tráfego entre você e os servidores de destino.</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Essa é a diferença fundamental entre Tor e VPN: enquanto um nó trapaceiro de retransmissão do Tor é totalmente permeável ao curso, um provedor de VPN desonesto pode registrar e explorar trivialmente todo o seu histórico de navegação</p>
+						<p class="fragment fade-down">Se você usa uma VPN, é melhor ter certeza de que confia na segurança e na integridade de quem a executa</p>
+					</section>
+					<section>
+						<figure>
+							<img src="img/tor-vpn.png" alt="Tor e VPN">
+							<figcaption>Fonte: [2]</figcaption>
+						</figure>
+					</section>
+					<section>
+						<p>E se você configurasse sua VPN para encaminhar todo o tráfego para uma segunda VPN e tornasse essa segunda VPN responsável por encaminhar seu tráfego para o destino apropriado?</p>
+					</section>
+					<section>
+						<p>Isso é chamado de <strong>encadeamento de proxy</strong>, e não é uma idéia totalmente ruim, mas a essa altura, tudo o que você está fazendo é construir uma versão do Tor menos segura</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Tor Atacante</h2>
+					</section>
+					<section>
+						<p>O Tor protege seus usuários contra ataques de análise de tráfego, em que um invasor tenta responder a ampla pergunta “com quem Alice está falando?”</p>
+					</section>
+					<section>
+						<p>No entanto, Tor é bastante aberto sobre o fato de não proteger contra ataques de confirmação, em que um invasor tenta para responder a pergunta específica "Alice está falando com Bob?"</p>
+					</section>
+					<section>
+						<p>Para confirmar a hipótese de que Alice e Bob estão conversando entre si através de circuito Tor, o atacante precisa ser capaz de monitorar ambas as extremidades do circuito</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Depois que o invasor tiver sua configuração de monitoramento, ele poderá analisar o volume e o formato do tráfego que Alice e Bob enviam e recebem</p>
+						<p class="fragment fade-down">Mesmo se a comunicação de Alice e Bob for criptografada e, portanto, ilegível para o invasor, o atacante ainda poderá ver se os padrões de tráfego amplos deles correspondem</p>
+					</section>
+					<section>
+						<p>Quanto mais nós e mais largura de banda um invasor controlar, maior será a probabilidade de Alice e Bob formarem um circuito que usa um guarda e um nó de saída controlados pelo invasor</p>
+					</section>
+					<section>
+						<p>Um ataque no qual um adversário sistematicamente tenta aumentar o controle de uma rede é conhecido como <strong>Sybil Attack</strong></p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Legalidade</h2>
+					</section>
+					<section>
+						<p>O Navegador Tor é legal?</p>
+					</section>
+					<section>
+						<p>Para a maioria das pessoas, o Navegador Tor é completamente legal para uso</p>
+					</section>
+					<section>
+						<p>No entanto, em alguns países Tor é ilegal ou bloqueado pelas autoridades nacionais</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">A China proibiu o serviço de anonimato e impediu que o tráfego de Tor cruzasse o Grande Firewall</p>
+						<p class="fragment fade-down">Países como Rússia, Arábia Saudita e Irã estão trabalhando duro para impedir que cidadãos usem o Tor</p>
+						<p class="fragment fade-down">Mais recentemente, a Venezuela bloqueou todo o tráfego do Tor</p>
+					</section>
+					<section data-background-color="#222222">
+						<blockquote style="color:white" cite="https://www.torproject.org/pt-BR/about/history/">"Tor é mais do que um simples software. É um trabalho, fruto da paixão de uma comunidade internacional de pessoas dedicadas aos direitos humanos. O Projeto Tor está altamente comprometido com a transparência e segurança de seus usuários"</blockquote>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Considerações</h2>
+					</section>
+					<section>
+						<p class="fragment fade-down">O propósito de toda ferramenta que é construída depende das intenções de seu detentor.</p>
+						<p class="fragment fade-down">Armas de fogo são usadas por policiais para protegerem uma nação e por criminosos que cometem atrocidades</p>
+						<p class="fragment fade-down">Tor não é diferente e pode ser usado tanto para o bem quanto para o mal.</p>
+					</section>
+					<section>
+						<p class="fragment fade-down">Por outro lado, vimos que a missão do Projeto Tor é promover a liberdade de expressão e a privacidade online dos usuários da internet</p>
+						<p class="fragment fade-down">A ferramenta em si não é perigosa</p>
+						<span class="fragment fade-down">
+						<p class="fragment grow">Os usuários podem ser</p>
+						</span>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2 class="fragment fade-down">Referências</h2>
+					</section>
+					<section>
+						<ul>
+							<li>[1] KHAN, K. <strong>How does TOR browser work?</strong>. Disponível em: <<a href="https://www.quora.com/How-does-TOR-browser-work">https://www.quora.com/How-does-TOR-browser-work</a>>. Acesso em: 19 jun. 2019.</li>
+							<li>[2] PORUP, J. M. <strong>What is the Tor Browser? How it works and how it can help you protect your identity online</strong>. Disponível em: <<a href="https://www.csoonline.com/article/3287653/what-is-the-tor-browser-how-it-works-and-how-it-can-help-you-protect-your-identity-online.html">https://www.csoonline.com/article/3287653/what-is-the-tor-browser-how-it-works-and-how-it-can-help-you-protect-your-identity-online.html</a>>. Acesso em: 18 jun. 2019.</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li>[3] PRIVATE INTERNET ACCESS. <strong>Tor vs. VPN vs. Proxy</strong>. Disponível em: <<a href="https://bra.privateinternetaccess.com/pages/tor-vpn-proxy">https://bra.privateinternetaccess.com/pages/tor-vpn-proxy</a>>. Acesso em: 19 jun. 2019.</li>
+							<li class="wrapped">[4] SHOWDEN, E. <strong>Just days left to kill mass surveillance under Section 215 of the Patriot Act. We are Edward Snowden and the ACLU’s Jameel Jaffer. AUA</strong>. Disponível em: <<a href="https://www.reddit.com/r/IAmA/comments/36ru89/just_days_left_to_kill_mass_surveillance_under/">https://www.reddit.com/r/IAmA/comments/36ru89/just_days_left_to_kill_mass_surveillance_under/</a>>. Acesso em: 19 jun. 2019.</li>
+							<li>[5] TOR. <strong>Sobre: história</strong>. Disponível em: <<a href="https://www.torproject.org/pt-BR/about/history/">https://www.torproject.org/pt-BR/about/history/</a>>. Acesso em: 18 jun. 2019.</li>
+						</ul>
+					</section>
+				</section>
 			</div>
 		</div>
-
 		<script src="js/reveal.js"></script>
-
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				slideNumber: true,
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					// Syntax highlight for <code> elements
+					{ src: 'plugin/highlight/highlight.js', async: true },
+
+					// Zoom in and out with Alt+click
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+
+					// Speaker notes
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
+
+					// MathJax
+					{ src: 'plugin/math/math.js', async: true }
+				],
+			})
 		</script>
 	</body>
 </html>

@@ -1,0 +1,29 @@
+Title: What is the Tor Browser? How it works and how it can help you protect your identity online
+Link: https://www.csoonline.com/article/3287653/what-is-the-tor-browser-how-it-works-and-how-it-can-help-you-protect-your-identity-online.html
+Author: J.M. Porup
+Organization: CSO
+Access at: 18 jun. 2019
+
+Title: Sobre: história
+Link: https://www.torproject.org/pt-BR/about/history/
+Organization: Tor
+Access at: 18 jun. 2019
+
+https://www.reddit.com/r/IAmA/comments/36ru89/just_days_left_to_kill_mass_surveillance_under/
+Title: Just days left to kill mass surveillance under Section 215 of the Patriot Act. We are Edward Snowden and the ACLU’s Jameel Jaffer. AUA.
+Org: reddit
+Author: Eduard Showden
+Access: 19 jun. 2019
+Pub date: 2015
+
+https://www.quora.com/How-does-TOR-browser-work
+Title: How does TOR browser work?
+Author: Kamran Khan
+Org: Quora
+Access: 19. jun. 2019
+Pub date: 3 mar. 2018
+
+https://bra.privateinternetaccess.com/pages/tor-vpn-proxy
+Title: Tor vs. VPN vs. Proxy
+Author: privateinternetaccess
+Access: 19 jun. 2019
